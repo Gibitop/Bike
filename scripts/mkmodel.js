@@ -12,8 +12,11 @@ if (process.argv.length < 3) {
 }
 
 // Convert name to PascalCase
-const modelName = process.argv[2].replace(/(\w)(\w*)/g,
-    (g0, g1, g2) => g1.toUpperCase() + g2.toLowerCase())
+const modelName = process.argv[2]
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
+        index === 0 ? word.toLowerCase() : word.toUpperCase())
+    .replace(/([^\w]|_)/g, '')
+    .replace(/(^.)(.*$)/, (_, g0, g1) => `${g0.toUpperCase()}${g1}`)
 
 fs.writeFileSync(`${__dirname}/../src/models/${modelName}.ts`,
     `import mongoose from '@lib/mongoose'
@@ -25,7 +28,7 @@ interface I${modelName} extends mongoose.Document {
 
 const ${modelName}Schema = new Schema({
     // TODO: define mongoose schema
-})
+}, { timestamps: true })
 
 export default mongoose.model<I${modelName}>('${modelName}', ${modelName}Schema)
 `)
