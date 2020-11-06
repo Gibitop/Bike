@@ -1,6 +1,6 @@
 {
   "name": "bike",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "license": "MIT",
   "author": {
@@ -11,12 +11,10 @@
     "build": "node_modules/.bin/tsc",
     "start": "node dist/app.js",
     "bns": "node_modules/.bin/tsc && node scripts/copyViews.js && node dist/app.js",
-    
     "mkapi": "node scripts/mkapi.js",
     "mkmodel": "node scripts/mkmodel.js",
     "mkjob": "node scripts/mkjob.js",
     "mkview": "node scripts/mkview.js",
-    
     "linkViews": "node scripts/linkViews.js",
     "postbuild": "node scripts/copyViews.js",
     "reformat": "node_modules/.bin/eslint . --fix"
