@@ -11,7 +11,7 @@ module.exports = (app: Express.Express, path: string) => {
      *     - password <string> : user's password
      * RESULTS:
      *     - 200 : Login successful
-     *     - 400 : Requred field is invalid
+     *     - 400 : Required field is invalid
      *     - 401 : Login failed
      *     - 500 : Internal server error
      */

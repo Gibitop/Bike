@@ -1,7 +1,7 @@
-// Enable soruce maps
+// Enable source maps
 import 'source-map-support/register'
 
-// Enable path alises
+// Enable path aliases
 import 'module-alias/register'
 
 // Load .env

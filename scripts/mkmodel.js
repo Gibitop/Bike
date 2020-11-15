@@ -7,7 +7,7 @@ const fs = require('fs')
 
 
 if (process.argv.length < 3) {
-    console.error('Usage: mkapi [model name]')
+    console.error('Usage: mkmodel [model name]')
     process.exit(-1)
 }
 

@@ -1,6 +1,6 @@
-import passwordValidator from 'password-validator'
+import PasswordValidator from 'password-validator'
 
-const validator = new passwordValidator()
+const validator = new PasswordValidator()
     .is().min(8)
     .is().max(64)
     // Only visible ASCII characters without spaces

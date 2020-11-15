@@ -1,7 +1,7 @@
 import passport from 'passport'
 import User, { IUser } from '@/models/User'
 import { Strategy as LocalStrategy } from 'passport-local'
-import { compareSync as comparePassowrd } from 'bcrypt'
+import { compareSync as comparePassword } from 'bcrypt'
 
 
 passport.serializeUser((user: IUser, done) => done(undefined, user['_id']))
@@ -28,7 +28,7 @@ passport.use(new LocalStrategy(
                         message: 'User not found'
                     })
                 } else {
-                    if (comparePassowrd(password, user.password)) {
+                    if (comparePassword(password, user.password)) {
                         done(undefined, user)
                     } else {
                         done(undefined, false, {

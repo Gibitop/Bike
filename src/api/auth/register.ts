@@ -8,14 +8,14 @@ module.exports = (app: Express.Express, path: string) => {
     /*
      * POST: /api/auth/register
      * DESCRIPTION:
-     *     Registeres a new user
+     *     Registers a new user
      * BODY:
      *     - email       <string> : User's email (will be used to log in)
      *     - password    <string> : User's password (will be used to log in)
      * RESULTS:
      *     - 200 : User registered successfully
      *     - 400 : Email or password is invalid
-     *     - 400 : User with this email aleready exists
+     *     - 400 : User with this email already exists
      *     - 500 : Internal server error
      */
     app.post(path, async (req: Express.Request, res: Express.Response) => {
@@ -30,7 +30,7 @@ module.exports = (app: Express.Express, path: string) => {
             }
 
             if (await User.exists({ email })) {
-                res.status(400).send('User with this email aleready exists')
+                res.status(400).send('User with this email already exists')
                 return
             }
 

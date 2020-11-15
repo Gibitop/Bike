@@ -6,8 +6,6 @@ export function render(view: string,
     encoding: 'ascii' | 'base64' | 'binary' | 'hex' | 'latin1' | 'utf-8' | 'utf16le' | 'utf8' = 'utf8'
 ): string {
     const source = readFileSync(`${__dirname}/../${view}`, encoding)
-    const template = Handlebars.compile(source)
-    const html = template(data)
-    return html
+    return  Handlebars.compile(source)(data)
 }
 
