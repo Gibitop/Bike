@@ -8,6 +8,9 @@ import 'module-alias/register'
 import dotenv from 'dotenv'
 dotenv.config()
 
+// Logging setup
+import log from '@lib/log'
+
 // Express setup
 import express from 'express'
 const port = parseInt(process.env.APP_PORT || '3001')
@@ -50,7 +53,7 @@ const registerEndpoints = (path: string, requireRelativePrefix = '') => {
         if (stat.isFile()) {
             if (file.endsWith('.js') || (file.endsWith('.ts') && !file.endsWith('.d.ts'))) {
                 const name = `${path}/${file.substr(0, file.length - 3)}`
-                console.log('Registering endpoint: /' + name)
+                log.info('Registering endpoint: /' + name)
                 // eslint-disable-next-line @typescript-eslint/no-var-requires
                 require(`${__dirname}/${requireRelativePrefix}${name}`)(app, '/' + name)
             }
@@ -76,5 +79,5 @@ app.engine('handlebars', expressHandlebars({
 
 // Start the Express server
 app.listen(port, host, () => {
-    console.log(`Server is listening at http://${host}:${port}`)
+    log.info(`Server is listening at http://${host}:${port}`)
 })

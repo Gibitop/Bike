@@ -20,6 +20,7 @@ const fullFilePath = `${__dirname}/../src/${path}${ext}`
 
 
 const header = `import Express from 'express'
+import log from '@lib/log'
 
 module.exports = (app: Express.Express, path: string) => {`
 
@@ -37,7 +38,7 @@ const endpoint = `
             // TODO: implement
         } catch (e) {
             res.sendStatus(500)
-            console.error(e)        
+            log.error(e)
         }
     })
 `
