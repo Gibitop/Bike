@@ -16,6 +16,9 @@ const use = (
 ) => {
     if (value === undefined) {
         if (parameters?.default) {
+            log.info('Config parameter ' +
+                    (parameters.name ? `'${parameters.name}' ` : '') +
+                    'is undefined. Using the default value')
             value = parameters.default
         } else {
             if (parameters?.required) {
@@ -23,6 +26,10 @@ const use = (
                     (parameters.name ? `'${parameters.name}' ` : '') +
                     'is undefined')
                 process.exit(-1)
+            } else {
+                log.warn('Config parameter ' +
+                    (parameters?.name ? `'${parameters.name}' ` : '') +
+                    'is undefined')
             }
             return value
         }
