@@ -1,10 +1,11 @@
 import nodemailer from 'nodemailer'
+import config from '@lib/config'
 
 export default nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: Number(process.env.MAIL_PORT) || 587,
+    host: config.mailHost,
+    port: config.mailPort,
     auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS
+        user: config.mailUser,
+        pass: config.mailPass
     }
 })

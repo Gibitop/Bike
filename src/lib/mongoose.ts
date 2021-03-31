@@ -4,16 +4,17 @@ import mongoose from 'mongoose'
 // @ts-ignore
 import beautifulUnique from 'mongoose-beautiful-unique-validation'
 import log from '@lib/log'
+import config from '@lib/config'
 
-mongoose.set('debug', process.env.DB_DEBUG ?? true)
+mongoose.set('debug', config.dbDebug)
 mongoose.set('useCreateIndex', true)
 mongoose.plugin(beautifulUnique)
 
-const user = `${process.env.DB_USER}:${process.env.DB_PASS}`
-const host = `${process.env.DB_HOST}:${process.env.DB_PORT}`
+const user = `${config.dbUser}:${config.dbPass}`
+const host = `${config.dbHost}:${config.dbPort}`
 mongoose
     .connect(`mongodb://${user}@${host}/admin`, {
-        dbName: process.env.DB_NAME,
+        dbName: config.dbName,
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,

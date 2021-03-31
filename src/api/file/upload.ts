@@ -2,6 +2,7 @@ import Express from 'express'
 import log from '@lib/log'
 import File from '@/models/File'
 import { v4 as uuid4 } from 'uuid'
+import config from '@/lib/config'
 
 module.exports = (app: Express.Express, path: string) => {
     /*
@@ -32,7 +33,7 @@ module.exports = (app: Express.Express, path: string) => {
             const extension = splittedFilename.length > 1
                 ? `.${splittedFilename[splittedFilename.length - 1]}`
                 : ''
-            const path = `${process.env.UPLOADS_PATH ?? './uploads'}/${uuid4()}${extension}`
+            const path = `${config.uploadsPath}/${uuid4()}${extension}`
             req.files.file.mv(path)
             const fileObject = await File.create({
                 name: filename,

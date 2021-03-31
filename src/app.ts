@@ -4,18 +4,20 @@ import 'source-map-support/register'
 // Enable path aliases
 import 'module-alias/register'
 
-// Load .env
+// Load .env file
 import dotenv from 'dotenv'
 dotenv.config()
 
+// Setup config
+import config from '@lib/config'
+
 // Logging setup
 import log from '@lib/log'
+log.level = config.logLevel
 
 // Express setup
 import express from 'express'
 import fileUpload from 'express-fileupload'
-const port = parseInt(process.env.APP_PORT || '3001')
-const host = process.env.APP_HOST || 'localhost'
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -32,7 +34,7 @@ import passport from '@lib/passport'
 app.use(cookieParser())
 app.use(
     expressSession({
-        secret: process.env.AUTH_SECRET || '',
+        secret: config.authSecret,
         resave: true,
         saveUninitialized: true,
         store: new (connectMongo(expressSession))({
@@ -90,6 +92,6 @@ app.engine(
 )
 
 // Start the Express server
-app.listen(port, host, () => {
-    log.info(`Server is listening at http://${host}:${port}`)
+app.listen(config.appPort, config.appHost, () => {
+    log.info(`Server is listening at http://${config.appHost}:${config.appPort}`)
 })
