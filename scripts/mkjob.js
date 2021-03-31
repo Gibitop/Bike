@@ -17,11 +17,16 @@ const jobName = process.argv[2]
         index === 0 ? word.toLowerCase() : word.toUpperCase())
     .replace(/([^\w]|_)/g, '')
 
-fs.writeFileSync(`${__dirname}/../src/jobs/${jobName}.ts`,
+const jobsDir = `${__dirname}/../src/jobs`
+fs.mkdirSync(jobsDir, { recursive: true })
+
+fs.writeFileSync(`${jobsDir}/${jobName}.ts`,
     `import { CronJob } from 'cron'
 
-// Every 5 minutes // TODO: change time string
-export default new CronJob('*/5 * * * *', async () => {
+export const job = async (): Promise<void> => {
     // TODO: implement the job
-})
+}
+
+// Every 5 minutes // TODO: change time string
+export default new CronJob('*/5 * * * *', job)
 `)
