@@ -14,3 +14,6 @@ dist/
 
 # Uploads
 uploads/
+
+# DB
+db/
