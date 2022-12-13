@@ -34,7 +34,7 @@
     "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-fileupload": "^1.2.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
